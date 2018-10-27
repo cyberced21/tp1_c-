@@ -1,0 +1,7 @@
+C:\Users\Sebas\Dropbox\C#\TP1\ControleTimer\ControleTimer\bin\Debug\ControleTimer.dll
+C:\Users\Sebas\Dropbox\C#\TP1\ControleTimer\ControleTimer\bin\Debug\ControleTimer.pdb
+C:\Users\Sebas\Dropbox\C#\TP1\ControleTimer\ControleTimer\obj\Debug\ControleTimer.csproj.CoreCompileInputs.cache
+C:\Users\Sebas\Dropbox\C#\TP1\ControleTimer\ControleTimer\obj\Debug\ControleTimer.dll
+C:\Users\Sebas\Dropbox\C#\TP1\ControleTimer\ControleTimer\obj\Debug\ControleTimer.pdb
+C:\Users\Sebas\Dropbox\C#\TP1\ControleTimer\ControleTimer\obj\Debug\ControleTimer.csproj.GenerateResource.cache
+C:\Users\Sebas\Dropbox\C#\TP1\ControleTimer\ControleTimer\obj\Debug\ControleTimer.ControleTimer.resources
