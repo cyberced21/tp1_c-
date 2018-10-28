@@ -69,10 +69,7 @@ namespace ControleTimer
 
         protected virtual void OnTimerAZero()
         {
-            if(TimerAZero != null)
-            {
-                TimerAZero(this, EventArgs.Empty);
-            }
+                TimerAZero?.Invoke(this, EventArgs.Empty);
         }
     }
 }
