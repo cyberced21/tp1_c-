@@ -11,16 +11,3 @@ C:\Users\Sebas\Dropbox\C#\TP1\ControleTimer\test\bin\Debug\ControleTimer.dll
 C:\Users\Sebas\Dropbox\C#\TP1\ControleTimer\test\bin\Debug\ControleTimer.pdb
 C:\Users\Sebas\Dropbox\C#\TP1\ControleTimer\test\obj\Debug\test.csprojAssemblyReference.cache
 C:\Users\Sebas\Dropbox\C#\TP1\ControleTimer\test\obj\Debug\test.csproj.CopyComplete
-C:\Users\cyberced21\Documents\GitHub\tp1_c-\test\bin\Debug\test.exe.config
-C:\Users\cyberced21\Documents\GitHub\tp1_c-\test\bin\Debug\test.exe
-C:\Users\cyberced21\Documents\GitHub\tp1_c-\test\bin\Debug\test.pdb
-C:\Users\cyberced21\Documents\GitHub\tp1_c-\test\bin\Debug\ControleTimer.dll
-C:\Users\cyberced21\Documents\GitHub\tp1_c-\test\bin\Debug\ControleTimer.pdb
-C:\Users\cyberced21\Documents\GitHub\tp1_c-\test\obj\Debug\test.csprojAssemblyReference.cache
-C:\Users\cyberced21\Documents\GitHub\tp1_c-\test\obj\Debug\test.Form1.resources
-C:\Users\cyberced21\Documents\GitHub\tp1_c-\test\obj\Debug\test.Properties.Resources.resources
-C:\Users\cyberced21\Documents\GitHub\tp1_c-\test\obj\Debug\test.csproj.GenerateResource.cache
-C:\Users\cyberced21\Documents\GitHub\tp1_c-\test\obj\Debug\test.csproj.CoreCompileInputs.cache
-C:\Users\cyberced21\Documents\GitHub\tp1_c-\test\obj\Debug\test.csproj.CopyComplete
-C:\Users\cyberced21\Documents\GitHub\tp1_c-\test\obj\Debug\test.exe
-C:\Users\cyberced21\Documents\GitHub\tp1_c-\test\obj\Debug\test.pdb
