@@ -19,6 +19,8 @@ namespace ControleTimer
         private Thread thread;
         private delegate void AfficherDelegue();
         AfficherDelegue afficher;
+        public delegate void ControleTimerElapsedEventHandler(object source, EventArgs args);
+        public event ControleTimerElapsedEventHandler TimerAZero;
 
         public ControleTimer()
         {
@@ -54,7 +56,7 @@ namespace ControleTimer
                 if (TInitial.Equals(new TimeSpan(0, 0, 0)))
                 {
                     timer.Stop();
-                    MessageBox.Show("Alerte");
+                    OnTimerAZero();
                     thread.Abort();
                 }
             }
@@ -63,6 +65,14 @@ namespace ControleTimer
         private void AfficherTimerTxt()
         {            
             lblTimer.Text = TInitial.ToString();                
+        }
+
+        protected virtual void OnTimerAZero()
+        {
+            if(TimerAZero != null)
+            {
+                TimerAZero(this, EventArgs.Empty);
+            }
         }
     }
 }
