@@ -15,11 +15,16 @@ namespace test
         public Form1()
         {
             InitializeComponent();
+            controle = new ControleTime();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             this.controleTimer1.Demarrer();
+        }
+        private void OnTimerDone(Object Source, EventArgs e)
+        {
+            MessageBox.Show("Timer fini");
         }
     }
 }
