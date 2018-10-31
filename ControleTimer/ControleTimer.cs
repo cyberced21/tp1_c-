@@ -49,7 +49,7 @@ namespace ControleTimer
 
         public void Demarrer()
         {
-            afficher = new AfficherDelegue(AfficherTimerHorloge);
+            afficher = new AfficherDelegue(AfficherTimerTxt);
             thread = new Thread(new ThreadStart(CompteARebours));
             thread.Start();
         }
@@ -58,6 +58,23 @@ namespace ControleTimer
         {
             TInitial = TInitial.Subtract(new TimeSpan(0, 0, 1));
             Invoke(afficher);
+        }
+
+        // On change le mode d'affichage quand l'utilisateur clic sur le controle
+        private void On_Click(object sender, EventArgs e)
+        {
+            if (this.lblTimer.Visible)
+            {
+                this.lblTimer.Visible = false;
+                this.pictureBox1.Visible = true;
+                afficher = new AfficherDelegue(AfficherTimerHorloge);
+            }
+            else
+            {
+                this.lblTimer.Visible = true;
+                this.pictureBox1.Visible = false;
+                afficher = new AfficherDelegue(AfficherTimerTxt);
+            }
         }
 
         private void CompteARebours()
@@ -142,7 +159,7 @@ namespace ControleTimer
             }
             else
             {
-                coord[0] = centreHorlogeX - (int)(hlen * Math.Sin(Math.PI * val / 180));
+                coord[0] = centreHorlogeX - (int)(hlen * -Math.Sin(Math.PI * val / 180));
                 coord[1] = centreHorlogeY - (int)(hlen * Math.Cos(Math.PI * val / 180));
             }
             return coord;
