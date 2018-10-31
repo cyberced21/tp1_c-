@@ -63,7 +63,12 @@ namespace ControleTimer
             Invoke(afficher);
         }
 
-        // On change le mode d'affichage quand l'utilisateur clic sur le controle
+        /*
+            On change le mode d'affichage quand l'utilisateur clic sur le controle
+            Cette methode doit etre misent comme gestionnaire de l'evenement click a la fois
+            dans le controleur de dans la pictureBox car celle-ci prend toute la place du controleur
+            Si on oublie de l'jouter dans le pictureBox, on ne pourra jamais cliquer sur le controlleur
+        */
         private void On_Click(object sender, EventArgs e)
         {
             if (this.lblTimer.Visible)
@@ -199,6 +204,13 @@ namespace ControleTimer
         {
             // Si TimerAZero n'est pas null, on lance l'evenement    
             TimerAZero?.Invoke(this, EventArgs.Empty);
+        }
+
+        // Si l'application utilisant le controle se ferme, on detruit le thread
+        protected override void OnHandleDestroyed(EventArgs e)
+        {
+            thread.Abort();
+            base.OnHandleDestroyed(e);
         }
     }
 }

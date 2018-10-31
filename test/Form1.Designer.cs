@@ -37,7 +37,7 @@
             this.controleTimer1.Name = "controleTimer1";
             this.controleTimer1.Size = new System.Drawing.Size(326, 234);
             this.controleTimer1.TabIndex = 0;
-            this.controleTimer1.TInitial = System.TimeSpan.Parse("00:01:25");
+            this.controleTimer1.TInitial = System.TimeSpan.Parse("00:00:10");
             // 
             // Form1
             // 

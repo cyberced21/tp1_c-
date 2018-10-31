@@ -5,3 +5,4 @@ C:\Users\Sebas\Dropbox\C#\TP1\ControleTimer\ControleTimer\obj\Debug\ControleTime
 C:\Users\Sebas\Dropbox\C#\TP1\ControleTimer\ControleTimer\obj\Debug\ControleTimer.pdb
 C:\Users\Sebas\Dropbox\C#\TP1\ControleTimer\ControleTimer\obj\Debug\ControleTimer.csproj.GenerateResource.cache
 C:\Users\Sebas\Dropbox\C#\TP1\ControleTimer\ControleTimer\obj\Debug\ControleTimer.ControleTimer.resources
+C:\Users\Sebas\Dropbox\C#\TP1\ControleTimer\ControleTimer\obj\Debug\ControleTimer.csprojAssemblyReference.cache
