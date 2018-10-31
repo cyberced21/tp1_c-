@@ -15,18 +15,18 @@ namespace ControleTimer
     public partial class ControleTimer: UserControl
     {
         private System.Timers.Timer timer = new System.Timers.Timer();
-        public TimeSpan TInitial { get; set; }
+        public TimeSpan TInitial { get; set; } // Le timer prendra son temps d'un timespan
         private Thread thread;
         private delegate void AfficherDelegue();
-        AfficherDelegue afficher;
-        public delegate void ControleTimerElapsedEventHandler(object source, EventArgs args);
-        public event ControleTimerElapsedEventHandler TimerAZero;
+        AfficherDelegue afficher; // Delegue qui nous permettra de choisir le mode d'affichage
+        public delegate void ControleTimerElapsedEventHandler(object source, EventArgs args); 
+        public event ControleTimerElapsedEventHandler TimerAZero; // Evenement qui sera leve quand le timer sera a zero
         private int largeurHorloge;
         private int hauteurHorloge;
-        private int aiguilleSec = 100, aiguilleMin = 75, aiguilleHeure = 50;
+        private int aiguilleSec = 100, aiguilleMin = 75, aiguilleHeure = 50; // Magnitude des aiguilles de l'horloge
         private int centreHorlogeX, centreHorlogeY;
 
-        Bitmap bmp;
+        Bitmap bmp; // Image qui sera colle sur le pictureBox
         Graphics g;
 
         public ControleTimer()
@@ -36,6 +36,7 @@ namespace ControleTimer
 
         private void ControleTimer_Load(object sender, EventArgs e)
         {
+            // On met l'intervale du timer a 1 sec et on l'affiche dans le label
             timer.Interval = 1000;
             lblTimer.Text = TInitial.ToString();
 
@@ -49,11 +50,13 @@ namespace ControleTimer
 
         public void Demarrer()
         {
-            afficher = new AfficherDelegue(AfficherTimerTxt);
-            thread = new Thread(new ThreadStart(CompteARebours));
+            afficher = new AfficherDelegue(AfficherTimerTxt); // Au depart, on affiche le timer dans le label
+            thread = new Thread(new ThreadStart(CompteARebours)); // On demarre le timer dans un thread
             thread.Start();
         }
 
+        // Lorsque le timer "tickera" on soustrait une seconde et on invoque
+        // le delegue afficher qui pointe vers le bon mode d'affichage
         private void OnTimer_Tick(object sender, EventArgs e)
         {
             TInitial = TInitial.Subtract(new TimeSpan(0, 0, 1));
@@ -67,23 +70,27 @@ namespace ControleTimer
             {
                 this.lblTimer.Visible = false;
                 this.pictureBox1.Visible = true;
-                afficher = new AfficherDelegue(AfficherTimerHorloge);
+                afficher = new AfficherDelegue(AfficherTimerHorloge); // On fait pointer le delegue vers le nouveau mode daffichage
             }
             else
             {
                 this.lblTimer.Visible = true;
                 this.pictureBox1.Visible = false;
-                afficher = new AfficherDelegue(AfficherTimerTxt);
+                afficher = new AfficherDelegue(AfficherTimerTxt); // On fait pointer le delegue vers le nouveau mode daffichage
             }
         }
 
+        // Methode qui est lancer dans le thread
         private void CompteARebours()
         {
-            timer.Elapsed += new ElapsedEventHandler(OnTimer_Tick);
+            timer.Elapsed += new ElapsedEventHandler(OnTimer_Tick); // Ajoute la methode OnTimer_Tick a l'evenement qui se produit quand le timer tick
             timer.Start();
-            Invoke(afficher);
+            Invoke(afficher); // On invoque le delegue qui pointe vers le bon mode d'affichage
+
+            // Tant que le thread est en vie on verifie si le timer est a zero...
             while (Thread.CurrentThread.IsAlive)
             {
+                // ... s'il est a zero, on arrete le timer, on lance l'evenement TimerAZero et on detruit le thread
                 if (TInitial.Equals(new TimeSpan(0, 0, 0)))
                 {
                     timer.Stop();
@@ -93,11 +100,13 @@ namespace ControleTimer
             }
         }
 
+        // Affiche simplement le compte a rebours sous forme de texte
         private void AfficherTimerTxt()
         {            
             lblTimer.Text = TInitial.ToString();                
         }
 
+        // Affiche le compte a rebours avec l'horloge
         private void AfficherTimerHorloge()
         {        
             // Cree lobjet Graphics
@@ -108,6 +117,7 @@ namespace ControleTimer
             int mm = TInitial.Minutes;
             int hh = TInitial.Hours;
 
+            // Represente la direction des aiguilles a partir du centre(x et y)
             int[] aiguilleCoord = new int[2];
 
             // Clear a blanc
@@ -119,7 +129,7 @@ namespace ControleTimer
             // Dessine les chiffres
             g.DrawString("12", new Font("Arial", 12), Brushes.Black, new PointF(140, 2));
             g.DrawString("3", new Font("Arial", 12), Brushes.Black, new PointF(295, 100));
-            g.DrawString("6", new Font("Arial", 12), Brushes.Black, new PointF(142, 200));
+            g.DrawString("6", new Font("Arial", 12), Brushes.Black, new PointF(145, 200));
             g.DrawString("9", new Font("Arial", 12), Brushes.Black, new PointF(0, 100));
 
             // Aiguille secondes
@@ -134,24 +144,23 @@ namespace ControleTimer
             aiguilleCoord = minsecCoord(hh%12, aiguilleHeure);
             g.DrawLine(new Pen(Color.Black), new Point(centreHorlogeX, centreHorlogeY), new Point(aiguilleCoord[0], aiguilleCoord[1]));
 
-            /*
-            // On redimensionne le label
-            this.lblTimer.Size = bmp.Size;
-            */
             // Charge le bmp dans le pictureBox
-            this.pictureBox1.Image = bmp;
-            this.pictureBox1.Visible = true;
+            this.pictureBox1.Image = bmp;            
 
             // Dispose
             g.Dispose();
         }
-
-        // Coordonnees pour les aiguilles minutes et secondes
+        /*
+            Coordonnees pour les aiguilles minutes et secondes
+            val represente les min ou sec ou on est rendu
+            et hlen represente la longueur de l'aiguille(min ou sec)
+        */
         private int[] minsecCoord(int val, int hlen)
         {
-            int[] coord = new int[2];
+            int[] coord = new int[2]; // Valeur a retourner
             val *= 6; // A chaque min et sec on fait 6 degrees
 
+            // On calcule la position x et y de l'aiguille par rapport au centre
             if(val >= 0 && val <= 180)
             {
                 coord[0] = centreHorlogeX + (int)(hlen * Math.Sin(Math.PI * val / 180));
@@ -162,15 +171,16 @@ namespace ControleTimer
                 coord[0] = centreHorlogeX - (int)(hlen * -Math.Sin(Math.PI * val / 180));
                 coord[1] = centreHorlogeY - (int)(hlen * Math.Cos(Math.PI * val / 180));
             }
-            return coord;
+            return coord; // Retourne la direction de l'aiguille (x et y)
         }
 
         // Coordonnees pour l'aiguille des heures
         private int[] hrCoord(int hVal, int mVal, int hlen)
         {
-            int[] coord = new int[2];
+            int[] coord = new int[2]; // Valeur a retourner
             int val = (int)((hVal * 30)); // On fait 30 degrees chaque heure
 
+            // On calcule la position x et y de l'aiguille par rapport au centre
             if (val >= 0 && val <= 180)
             {
                 coord[0] = centreHorlogeX + (int)(hlen * Math.Sin(Math.PI * val / 180));
@@ -181,12 +191,14 @@ namespace ControleTimer
                 coord[0] = centreHorlogeX - (int)(hlen * Math.Sin(Math.PI * val / 180));
                 coord[1] = centreHorlogeY - (int)(hlen * Math.Sin(Math.PI * val / 180));
             }
-            return coord;
+            return coord; // Retourne la direction de l'aiguille (x et y)
         }        
 
+        // Evenement lance quand le timer arrive a zero
         protected virtual void OnTimerAZero()
         {
-                TimerAZero?.Invoke(this, EventArgs.Empty);
+            // Si TimerAZero n'est pas null, on lance l'evenement    
+            TimerAZero?.Invoke(this, EventArgs.Empty);
         }
     }
 }
