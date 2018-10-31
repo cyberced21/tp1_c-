@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.lblTimer = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTimer
@@ -40,14 +42,25 @@
             this.lblTimer.TabIndex = 0;
             this.lblTimer.Text = "Timer";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(320, 228);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
+            // 
             // ControleTimer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblTimer);
             this.Name = "ControleTimer";
             this.Size = new System.Drawing.Size(326, 234);
             this.Load += new System.EventHandler(this.ControleTimer_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -55,5 +68,6 @@
 
         #endregion
         private System.Windows.Forms.Label lblTimer;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
