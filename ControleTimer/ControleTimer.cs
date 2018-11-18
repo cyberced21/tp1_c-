@@ -131,11 +131,19 @@ namespace ControleTimer
             // Dessine le cercle
             g.DrawEllipse(new Pen(Color.Black, 1f), 0, 0, largeurHorloge, hauteurHorloge);
 
-            // Dessine les chiffres
-            g.DrawString("12", new Font("Arial", 12), Brushes.Black, new PointF(140, 2));
-            g.DrawString("3", new Font("Arial", 12), Brushes.Black, new PointF(295, 100));
-            g.DrawString("6", new Font("Arial", 12), Brushes.Black, new PointF(145, 200));
-            g.DrawString("9", new Font("Arial", 12), Brushes.Black, new PointF(0, 100));
+
+
+            // Dessine les chiffres en calculant les coordonner a pour chaque 5 minutes
+            // pour qu'il soit egale sur l'horloge
+            int compteur_nb = 12;
+            for (int i = 0; i < 60; i+=5) 
+            {
+                if (i == 5) { compteur_nb = 1; };
+                g.DrawString(compteur_nb.ToString(), new Font("Arial", 12),
+                    Brushes.Black, 
+                    new PointF(minsecCoord(i,130)[0], minsecCoord(i, 130)[1]));
+                compteur_nb++;
+            }
 
             // Aiguille secondes
             aiguilleCoord = minsecCoord(ss, aiguilleSec);

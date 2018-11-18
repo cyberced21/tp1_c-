@@ -29,32 +29,68 @@
         private void InitializeComponent()
         {
             this.controleTimer1 = new ControleTimer.ControleTimer();
+            this.btn_ok = new System.Windows.Forms.Button();
+            this.txt_box_answer = new System.Windows.Forms.TextBox();
+            this.lbl_1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // controleTimer1
             // 
-            this.controleTimer1.Location = new System.Drawing.Point(230, 108);
+            this.controleTimer1.Location = new System.Drawing.Point(182, 9);
             this.controleTimer1.Name = "controleTimer1";
-            this.controleTimer1.Size = new System.Drawing.Size(326, 234);
+            this.controleTimer1.Size = new System.Drawing.Size(300, 300);
             this.controleTimer1.TabIndex = 0;
             this.controleTimer1.TInitial = System.TimeSpan.Parse("00:00:10");
+            // 
+            // btn_ok
+            // 
+            this.btn_ok.Location = new System.Drawing.Point(310, 420);
+            this.btn_ok.Name = "btn_ok";
+            this.btn_ok.Size = new System.Drawing.Size(75, 23);
+            this.btn_ok.TabIndex = 1;
+            this.btn_ok.Text = "Ok";
+            this.btn_ok.UseVisualStyleBackColor = true;
+            this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
+            // 
+            // txt_box_answer
+            // 
+            this.txt_box_answer.Location = new System.Drawing.Point(300, 394);
+            this.txt_box_answer.Name = "txt_box_answer";
+            this.txt_box_answer.Size = new System.Drawing.Size(100, 20);
+            this.txt_box_answer.TabIndex = 2;
+            // 
+            // lbl_1
+            // 
+            this.lbl_1.AutoSize = true;
+            this.lbl_1.Location = new System.Drawing.Point(287, 364);
+            this.lbl_1.Name = "lbl_1";
+            this.lbl_1.Size = new System.Drawing.Size(126, 13);
+            this.lbl_1.TabIndex = 3;
+            this.lbl_1.Text = "Aimez-vous les horloges?";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbl_1);
+            this.Controls.Add(this.txt_box_answer);
+            this.Controls.Add(this.btn_ok);
             this.Controls.Add(this.controleTimer1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private ControleTimer.ControleTimer controleTimer1;
+        private System.Windows.Forms.Button btn_ok;
+        private System.Windows.Forms.TextBox txt_box_answer;
+        private System.Windows.Forms.Label lbl_1;
     }
 }
 

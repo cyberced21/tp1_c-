@@ -17,15 +17,33 @@ namespace test
             InitializeComponent();
         }
 
+
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.controleTimer1.TimerAZero += new ControleTimer.ControleTimer.ControleTimerElapsedEventHandler(msg);
+            this.controleTimer1.TimerAZero += new ControleTimer.ControleTimer.ControleTimerElapsedEventHandler(triger_disable);
             this.controleTimer1.Demarrer();
         }
+        
 
-        private void msg(object source, EventArgs e)
+        private void disable() { txt_box_answer.Enabled = false; }
+        public delegate void disableTxtBox(object source, EventArgs args);
+        private void triger_disable(object source, EventArgs args)
         {
-            MessageBox.Show("Explosion!");
+            if (this.txt_box_answer.InvokeRequired)
+            {
+                disableTxtBox d = new disableTxtBox(triger_disable);
+                this.Invoke(d, new object[2] { System.EventArgs.Empty,System.EventArgs.Empty });
+            }
+
+            disable();
+        }
+
+        private void btn_ok_Click(object sender, EventArgs e)
+        {
+            if (txt_box_answer.Text == "oui" || txt_box_answer.Text == "OUI")
+            {
+                MessageBox.Show("Tu est le ou la meilleur(e)");
+            }
         }
     }
 }
